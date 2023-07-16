@@ -1,15 +1,13 @@
 # This program converts the .csv format of Microsoft Outlook into the same format of Thunderbird.
 # Author: Sherman Chen
 # Date of creation: 20230715
-# Last update: 20230715
+# Last update: 20230716
 
 import pandas as pd
 import numpy as np
 
-# INFILE = 'outlookcontacts.csv'
-# OUTFILE = 'thunderbirdcontacts.csv'
-INFILE = 'contactsTotal.csv'
-OUTFILE = 'contactsTotalThunder.csv'
+INFILE = 'contactsOutlook.csv'
+OUTFILE = 'outContactsThunderbird.csv'
 
 
 def importContacts():
@@ -21,7 +19,8 @@ def importContacts():
     Returns:
         df2 (dataFrame): contacts of Outlook
     """
-    df = pd.read_csv(INFILE, encoding='Windows-1252', low_memory=False)
+    df = pd.read_csv(INFILE, encoding='utf_8', low_memory=False) # If there is encoding problem, use detectEncoding.py to find the encoding, and substitute it in this line.
+    # df = pd.read_csv(INFILE, encoding='Windows-1252', low_memory=False)
     df2 = df.loc[:, ['First Name','Last Name','Company','Department','Job Title','Business Street','Business City','Business State','Business Postal Code','Business Fax','Business Phone','Business Phone 2','Home Phone','Mobile Phone','E-mail Address','E-mail 2 Address','E-mail 3 Address','Notes']]
     return df2
 
